@@ -13,8 +13,10 @@ Wir sind in einem Dienstleistungsunternehmen, wo wir der Sys.Admin Gruppe sind u
 
 	* Mitglieder(Vorname, Nachname, Geburtstag, Rolle, Abteilung, ...)
 
-	* Kurse(Teilnehemer, Lerhperson, Datum(dd.mm.jjjj hh:mm), Thema, ..)
+	* Kurse(ID Person, IDLerhperson, DatumABgeschlossen(dd.mm.jjjj hh:mm), Gebiet, ..)
 
 	* Tasks(Deadline(Datum), Message, Verantwortlicher, ...)
 
 	* Abteilung(Name der Abteilung, Name des Abetilungsleiter, ....)
+
+Wir sind ein Handwerkunternhemen mit bezifische Expertiesen. 
