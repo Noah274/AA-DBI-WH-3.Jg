@@ -1,11 +1,4 @@
-Table 1 Rollen
-Table 2 Termine
-Table 3 Mitglieder
-Table 4 Kurse
-Table 5 Tasks
-Table 6 Abteilung
-
-Wir sind in einem Dienstleistungsunternehmen, wo wir der Sys.Admin Gruppe sind und wir müssen eine DB auf setzten wo wir die Mitglieder und die Rollen der Mitglieder verwalten. Dazu kann ein Mitglied Verschiedene Termine haben (z.B.: Wöchentliche Meetings). Natürlich hat jedes Mitglied Task zu erledigen, über den Tag/ die Woche. Neben Tasks und Termine haben auch Mitglieder Kurse wobei sie sich weiterbilden können. Ein Grober überblick über die ERD:
+Wir sind in einem Dienstleistungsunternehmen(Handwerkunternhemen), wo wir der Sys.Admin Gruppe sind und wir müssen eine DB auf setzten wo wir die Mitglieder und die Rollen der Mitglieder verwalten. Dazu kann ein Mitglied Verschiedene Termine haben (z.B.: Wöchentliche Meetings). Natürlich hat jedes Mitglied Task zu erledigen, über den Tag/ die Woche. Neben Tasks und Termine haben auch Mitglieder Kurse wobei sie sich weiterbilden können. Ein Grober überblick über die ERD:
 
 	* Termine(Uhrzeit, Grund, Datum, ...)
 	
@@ -19,4 +12,12 @@ Wir sind in einem Dienstleistungsunternehmen, wo wir der Sys.Admin Gruppe sind u
 
 	* Abteilung(Name der Abteilung, Name des Abetilungsleiter, ....)
 
-Wir sind ein Handwerkunternhemen mit bezifische Expertiesen. 
+
+*** Relevante Quries ***
+
+ * Gib alle Task aus die Gerade ein Mitarbeiter zu tun hat.
+ * Geben mir jeweils alle Mitglieder mit ihren Rollen aus.
+ * Gib mir alle Termine die zwischen *einem Zeitraum* sind. 
+ * Gib mir alle Abteilungen aus und wo welcher Mitarbeiter arbeitet. 
+ * Alle Kurse die ein Mitglied abgeschlossen hat.
+ * Gib mir alle Mitglieder aus und wie viele Tasks sie derzeit haben
