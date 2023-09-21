@@ -20,9 +20,10 @@ Wir sind in einem Dienstleistungsunternehmen(Handwerkunternhemen), wo wir der Sy
     •	Gib mir alle Abteilungen aus und wo welcher Mitarbeiter arbeitet.
     •	Alle Kurse die ein Mitglied abgeschlossen hat.
     •	Gib mir alle Mitglieder aus und wie viele Tasks sie derzeit haben
+    •	Gib mir alle Mitglieder die für eine Task erlaubt/verfügbar sind.
 
 ### ERD
-![Alt text](image-1.png)
+![Alt text](image-2.png)
 ### UML Code
 ```
 @startuml
@@ -64,6 +65,7 @@ entity "Tasks" {
   Deadline: date
   Message: string
   Responsible: int
+  FinishDate: date
 }
 
 entity "Courses" {
@@ -111,8 +113,9 @@ CREATE OR REPLACE PACKAGE ServiceCompany AS
     PROCEDURE DeleteAppointment(id IN NUMBER);
     
     -- CRUD for Tasks
-    PROCEDURE AddTask(deadline IN DATE, message IN VARCHAR2, responsible IN NUMBER);
-    PROCEDURE UpdateTask(id IN NUMBER, deadline IN DATE, message IN VARCHAR2, responsible IN NUMBER);
+    PROCEDURE AddTask(deadline IN DATE, message IN VARCHAR2, responsible IN NUMBER, finishdate IN DATE := NULL);
+    PROCEDURE UpdateTask(id IN NUMBER, deadline IN DATE, message IN VARCHAR2, responsible IN NUMBER, finishdate IN DATE := NULL);
+
     PROCEDURE DeleteTask(id IN NUMBER);
     
     -- CRUD for Courses
