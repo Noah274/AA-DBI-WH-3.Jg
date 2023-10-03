@@ -64,3 +64,5 @@ INSERT INTO Courses (Course_ID, CourseDate, Topic) VALUES (1, TO_DATE('2023-12-1
 
 INSERT INTO CourseParticipants (Course_ID, Member_ID) VALUES (1, 1);
 INSERT INTO CourseParticipants (Course_ID, Member_ID) VALUES (1, 2);
+
+COMMIT;
