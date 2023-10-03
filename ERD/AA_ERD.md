@@ -145,7 +145,6 @@ CREATE OR REPLACE PACKAGE ServiceCompany AS
     -- CRUD for Tasks
     PROCEDURE AddTask(deadline IN DATE, message IN VARCHAR2, responsible IN NUMBER, finishdate IN DATE := NULL);
     PROCEDURE UpdateTask(id IN NUMBER, deadline IN DATE, message IN VARCHAR2, responsible IN NUMBER, finishdate IN DATE := NULL);
-
     PROCEDURE DeleteTask(id IN NUMBER);
     
     -- CRUD for Courses
