@@ -120,42 +120,233 @@ Appointments ||--o{ Room
 
 ```
 CREATE OR REPLACE PACKAGE ServiceCompany AS
+  -- Create operations
+  PROCEDURE CreateMember(
+    p_FirstName IN VARCHAR2,
+    p_LastName IN VARCHAR2,
+    p_Birthdate IN DATE
+  );
 
-    -- CRUD for Members
-    PROCEDURE AddMember(firstname IN VARCHAR2, lastname IN VARCHAR2, birthdate IN DATE, role IN NUMBER, department IN NUMBER);
-    PROCEDURE UpdateMember(id IN NUMBER, firstname IN VARCHAR2, lastname IN VARCHAR2, birthdate IN DATE, role IN NUMBER, department IN NUMBER);
-    PROCEDURE DeleteMember(id IN NUMBER);
-    FUNCTION GetMember(id IN NUMBER) RETURN SYS_REFCURSOR;
-    
-    -- CRUD for Roles
-    PROCEDURE AddRole(role IN VARCHAR2, manager_id IN NUMBER);
-    PROCEDURE UpdateRole(id IN NUMBER, role IN VARCHAR2, manager_id IN NUMBER);
-    PROCEDURE DeleteRole(id IN NUMBER);
-    
-    -- CRUD for Department
-    PROCEDURE AddDepartment(name IN VARCHAR2, head IN NUMBER);
-    PROCEDURE UpdateDepartment(id IN NUMBER, name IN VARCHAR2, head IN NUMBER);
-    PROCEDURE DeleteDepartment(id IN NUMBER);
-    
-    -- CRUD for Appointments
-    PROCEDURE AddAppointment(time IN TIMESTAMP, reason IN VARCHAR2, date IN DATE, member_id IN NUMBER);
-    PROCEDURE UpdateAppointment(id IN NUMBER, time IN TIMESTAMP, reason IN VARCHAR2, date IN DATE, member_id IN NUMBER);
-    PROCEDURE DeleteAppointment(id IN NUMBER);
-    
-    -- CRUD for Tasks
-    PROCEDURE AddTask(deadline IN DATE, message IN VARCHAR2, responsible IN NUMBER, finishdate IN DATE := NULL);
-    PROCEDURE UpdateTask(id IN NUMBER, deadline IN DATE, message IN VARCHAR2, responsible IN NUMBER, finishdate IN DATE := NULL);
-    PROCEDURE DeleteTask(id IN NUMBER);
-    
-    -- CRUD for Courses
-    PROCEDURE AddCourse(instructor IN VARCHAR2, date IN TIMESTAMP, topic IN VARCHAR2);
-    PROCEDURE UpdateCourse(id IN NUMBER, instructor IN VARCHAR2, date IN TIMESTAMP, topic IN VARCHAR2);
-    PROCEDURE DeleteCourse(id IN NUMBER);
-    
-    -- CRUD for Courses_Members
-    PROCEDURE AddCourseMember(course_id IN NUMBER, member_id IN NUMBER);
-    PROCEDURE DeleteCourseMember(course_id IN NUMBER, member_id IN NUMBER);
-    
+  PROCEDURE CreateRole(
+    p_Role IN VARCHAR2
+  );
+
+  PROCEDURE CreateMemberRole(
+    p_Member_ID IN NUMBER,
+    p_Role_ID IN NUMBER
+  );
+
+  PROCEDURE CreateDepartment(
+    p_DepartmentName IN VARCHAR2
+  );
+
+  PROCEDURE CreateDepartmentsFederalState(
+    p_Department_ID IN NUMBER,
+    p_Location_ID IN NUMBER
+  );
+
+  PROCEDURE CreateTicket;
+
+  PROCEDURE CreateMemberTicket(
+    p_Member_ID IN NUMBER,
+    p_Ticket_ID IN NUMBER
+  );
+
+  PROCEDURE CreateJob(
+    p_JobType IN VARCHAR2
+  );
+
+  PROCEDURE CreateMemberJob(
+    p_Member_ID IN NUMBER,
+    p_Job_ID IN NUMBER
+  );
+
+  PROCEDURE CreateRoom(
+    p_RoomName IN VARCHAR2
+  );
+
+  PROCEDURE CreateAppointment(
+    p_Reason IN VARCHAR2,
+    p_Book_Start IN DATE,
+    p_Book_End IN DATE
+  );
+
+  PROCEDURE CreateMembersDepartment(
+    p_Member_ID IN NUMBER,
+    p_Department_ID IN NUMBER
+  );
+
+  PROCEDURE CreateAppointmentTicket(
+    p_Appointment_ID IN NUMBER,
+    p_Ticket_ID IN NUMBER
+  );
+
+  PROCEDURE CreateAppointmentRoom(
+    p_Appointment_ID IN NUMBER,
+    p_Room_ID IN NUMBER
+  );
+
+  PROCEDURE CreateTask(
+    p_Deadline IN DATE,
+    p_Message IN VARCHAR2,
+    p_FinishDate IN DATE
+  );
+
+  PROCEDURE CreateMemberTask(
+    p_Member_ID IN NUMBER,
+    p_Task_ID IN NUMBER
+  );
+
+  PROCEDURE CreateCourse(
+    p_CourseDate IN DATE,
+    p_Topic IN VARCHAR2
+  );
+
+  PROCEDURE CreateCourseParticipant(
+    p_Course_ID IN NUMBER,
+    p_Member_ID IN NUMBER
+  );
+
+  -- Read operations
+  FUNCTION GetMemberById(
+    p_Member_ID IN NUMBER
+  ) RETURN SYS_REFCURSOR;
+
+  FUNCTION GetRoleById(
+    p_Role_ID IN NUMBER
+  ) RETURN SYS_REFCURSOR;
+
+  FUNCTION GetDepartmentById(
+    p_Department_ID IN NUMBER
+  ) RETURN SYS_REFCURSOR;
+
+  FUNCTION GetLocationById(
+    p_Location_ID IN NUMBER
+  ) RETURN SYS_REFCURSOR;
+
+  FUNCTION GetTicketById(
+    p_Ticket_ID IN NUMBER
+  ) RETURN SYS_REFCURSOR;
+
+  FUNCTION GetJobById(
+    p_Job_ID IN NUMBER
+  ) RETURN SYS_REFCURSOR;
+
+  FUNCTION GetRoomById(
+    p_Room_ID IN NUMBER
+  ) RETURN SYS_REFCURSOR;
+
+  FUNCTION GetAppointmentById(
+    p_Appointment_ID IN NUMBER
+  ) RETURN SYS_REFCURSOR;
+
+  FUNCTION GetTaskById(
+    p_Task_ID IN NUMBER
+  ) RETURN SYS_REFCURSOR;
+
+  FUNCTION GetCourseById(
+    p_Course_ID IN NUMBER
+  ) RETURN SYS_REFCURSOR;
+
+  -- Update operations
+  PROCEDURE UpdateMember(
+    p_Member_ID IN NUMBER,
+    p_FirstName IN VARCHAR2,
+    p_LastName IN VARCHAR2,
+    p_Birthdate IN DATE
+  );
+
+  PROCEDURE UpdateRole(
+    p_Role_ID IN NUMBER,
+    p_Role IN VARCHAR2
+  );
+
+  PROCEDURE UpdateDepartment(
+    p_Department_ID IN NUMBER,
+    p_DepartmentName IN VARCHAR2
+  );
+
+  PROCEDURE UpdateLocation(
+    p_Location_ID IN NUMBER,
+    p_LocationName IN VARCHAR2
+  );
+
+  PROCEDURE UpdateTicket(
+    p_Ticket_ID IN NUMBER
+  );
+
+  PROCEDURE UpdateJob(
+    p_Job_ID IN NUMBER,
+    p_JobType IN VARCHAR2
+  );
+
+  PROCEDURE UpdateRoom(
+    p_Room_ID IN NUMBER,
+    p_RoomName IN VARCHAR2
+  );
+
+  PROCEDURE UpdateAppointment(
+    p_Appointment_ID IN NUMBER,
+    p_Reason IN VARCHAR2,
+    p_Book_Start IN DATE,
+    p_Book_End IN DATE
+  );
+
+  PROCEDURE UpdateTask(
+    p_Task_ID IN NUMBER,
+    p_Deadline IN DATE,
+    p_Message IN VARCHAR2,
+    p_FinishDate IN DATE
+  );
+
+  PROCEDURE UpdateCourse(
+    p_Course_ID IN NUMBER,
+    p_CourseDate IN DATE,
+    p_Topic IN VARCHAR2
+  );
+
+  -- Delete operations
+  PROCEDURE DeleteMember(
+    p_Member_ID IN NUMBER
+  );
+
+  PROCEDURE DeleteRole(
+    p_Role_ID IN NUMBER
+  );
+
+  PROCEDURE DeleteDepartment(
+    p_Department_ID IN NUMBER
+  );
+
+  PROCEDURE DeleteLocation(
+    p_Location_ID IN NUMBER
+  );
+
+  PROCEDURE DeleteTicket(
+    p_Ticket_ID IN NUMBER
+  );
+
+  PROCEDURE DeleteJob(
+    p_Job_ID IN NUMBER
+  );
+
+  PROCEDURE DeleteRoom(
+    p_Room_ID IN NUMBER
+  );
+
+  PROCEDURE DeleteAppointment(
+    p_Appointment_ID IN NUMBER
+  );
+
+  PROCEDURE DeleteTask(
+    p_Task_ID IN NUMBER
+  );
+
+  PROCEDURE DeleteCourse(
+    p_Course_ID IN NUMBER
+  );
 END ServiceCompany;
+/
+
 ```
 

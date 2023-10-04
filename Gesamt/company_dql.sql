@@ -817,3 +817,23 @@ BEGIN
     WHERE Course_ID = p_Course_ID;
 END;
 /
+
+SELECT M.Member_ID, M.FirstName, M.LastName, COUNT(MT.Ticket_ID) AS TotalTickets
+FROM Members M
+LEFT JOIN MemberTickets MT ON M.Member_ID = MT.Member_ID
+GROUP BY M.Member_ID, M.FirstName, M.LastName;
+
+SELECT R.Room_ID, R.RoomName
+FROM Room R
+LEFT JOIN AppointmentRooms AR ON R.Room_ID = AR.Room_ID
+LEFT JOIN Appointments A ON AR.Appointment_ID = A.Appointment_ID
+WHERE (A.Appointment_ID IS NULL OR (A.Book_Start > TIMESTAMP '2023-10-04 09:00:00' OR A.Book_End < TIMESTAMP '2023-10-04 10:00:00'));
+
+SELECT *
+FROM Appointments
+WHERE Book_Start >= TIMESTAMP '2023-10-04 09:00:00' AND Book_End <= TIMESTAMP '2023-10-04 10:00:00';
+
+SELECT MT.Member_ID, T.Ticket_ID
+FROM MemberTickets MT
+JOIN Ticket T ON MT.Ticket_ID = T.Ticket_ID
+WHERE MT.Member_ID = 1;
